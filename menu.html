@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu | The Tasty Theory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f5f0;
+      color: #2e2e2e;
+      padding: 30px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .menu-section {
+      max-width: 1000px;
+      margin: 40px auto;
+    }
+
+    .menu-category {
+      margin-bottom: 40px;
+    }
+
+    .menu-category h2 {
+      color: #a86b2e;
+      font-size: 2rem;
+      border-bottom: 2px solid #e2cfcf;
+      padding-bottom: 5px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .menu-item img.menu-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+
+    .menu-item span {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-item .discount {
+      color: #d32f2f;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .menu-item button {
+      padding: 5px 15px;
+      background: #a86b2e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      min-width: 100px;
+    }
+
+    .menu-item button:hover {
+      background: #8a5724;
+    }
+
+    .thank-you {
+      display: none;
+      text-align: center;
+      font-size: 1.4rem;
+      color: #3b2c2a;
+      margin-top: 30px;
+    }
+
+    .total {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>The Tasty Theory - Menu</h1>
+
+  <div class="menu-section">
+    <div class="menu-category">
+      <h2>Starters - Veg</h2>
+      <div class="menu-item">
+        <img src="Avocado Bruschetta.jpg" alt="Avocado Bruschetta" class="menu-img"/>
+        <span>Avocado Bruschetta - ₹210 <span class="discount">10% OFF</span></span>
+        <button onclick="addToOrder(210, true)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Truffle Mushroom Arancini.jpg" alt="Truffle Mushroom Arancini" class="menu-img"/>
+        <span>Truffle Mushroom Arancini - ₹230</span>
+        <button onclick="addToOrder(230)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Stuffed Bell Peppers.jpg" alt="Stuffed Bell Peppers" class="menu-img"/>
+        <span>Stuffed Bell Peppers - ₹200</span>
+        <button onclick="addToOrder(200)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Crispy Tofu Bites .jpg" alt="Crispy Tofu Bites" class="menu-img"/>
+        <span>Crispy Tofu Bites - ₹190</span>
+        <button onclick="addToOrder(190)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Spicy Corn Fritters.jpg" alt="Spicy Corn Fritters" class="menu-img"/>
+        <span>Spicy Corn Fritters - ₹180</span>
+        <button onclick="addToOrder(180)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Mini Falafel Balls.jpg" alt="Mini Falafel Balls" class="menu-img"/>
+        <span>Mini Falafel Balls - ₹170</span>
+        <button onclick="addToOrder(170)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Veg Sushi Rolls.jpg" alt="Veg Sushi Rolls" class="menu-img"/>
+        <span>Veg Sushi Rolls - ₹240</span>
+        <button onclick="addToOrder(240)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Garlic Bread Supreme.jpg" alt="Garlic Bread Supreme" class="menu-img"/>
+        <span>Garlic Bread Supreme - ₹150</span>
+        <button onclick="addToOrder(150)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Herbed Cheese Croquettes.jpg" alt="Herbed Cheese Croquettes" class="menu-img"/>
+        <span>Herbed Cheese Croquettes - ₹220</span>
+        <button onclick="addToOrder(220)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Pesto Paneer Skewers.jpg" alt="Pesto Paneer Skewers" class="menu-img"/>
+        <span>Pesto Paneer Skewers - ₹210</span>
+        <button onclick="addToOrder(210)">Place Order</button>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <h2>Starters - Non-Veg</h2>
+      <div class="menu-item">
+        <img src="Korean Spicy Chicken Wings.jpg" alt="Korean Spicy Chicken Wings" class="menu-img"/>
+        <span>Korean Spicy Chicken Wings - ₹260</span>
+        <button onclick="addToOrder(260)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Cajun Prawn Skewers.jpg" alt="Cajun Prawn Skewers" class="menu-img"/>
+        <span>Cajun Prawn Skewers - ₹280 <span class="discount">10% OFF</span></span>
+        <button onclick="addToOrder(280, true)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Buffalo Chicken Tenders.jpg" alt="Buffalo Chicken Tenders" class="menu-img"/>
+        <span>Buffalo Chicken Tenders - ₹250</span>
+        <button onclick="addToOrder(250)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Grilled Lamb Kebabs.jpg" alt="Grilled Lamb Kebabs" class="menu-img"/>
+        <span>Grilled Lamb Kebabs - ₹300</span>
+        <button onclick="addToOrder(300)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="BBQ Chicken Sliders.jpg" alt="BBQ Chicken Sliders" class="menu-img"/>
+        <span>BBQ Chicken Sliders - ₹270</span>
+        <button onclick="addToOrder(270)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Fish Tikka Bites.jpg" alt="Fish Tikka Bites" class="menu-img"/>
+        <span>Fish Tikka Bites - ₹260</span>
+        <button onclick="addToOrder(260)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Honey Garlic Chicken Popcorn.jpg" alt="Honey Garlic Chicken Popcorn" class="menu-img"/>
+        <span>Honey Garlic Chicken Popcorn - ₹240</span>
+        <button onclick="addToOrder(240)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Teriyaki Chicken Skewers.jpg" alt="Teriyaki Chicken Skewers" class="menu-img"/>
+        <span>Teriyaki Chicken Skewers - ₹290</span>
+        <button onclick="addToOrder(290)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Spiced Duck Spring Rolls.jpg" alt="Spiced Duck Spring Rolls" class="menu-img"/>
+        <span>Spiced Duck Spring Rolls - ₹310</span>
+        <button onclick="addToOrder(310)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Garlic Butter Shrimp.jpg" alt="Garlic Butter Shrimp" class="menu-img"/>
+        <span>Garlic Butter Shrimp - ₹320</span>
+        <button onclick="addToOrder(320)">Place Order</button>
+      </div>
+    </div>
+
+    <!-- Main Dishes -->
+    <div class="menu-category">
+      <h2>Main Dishes - Veg</h2>
+      <div class="menu-item">
+        <img src="Veg Lasagna.jpg" alt="Veg Lasagna" class="menu-img"/>
+        <span>Veg Lasagna - ₹420 <span class="discount">15% OFF</span></span>
+        <button onclick="addToOrder(420, true)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Paneer Butter Masala.jpg" alt="Paneer Butter Masala" class="menu-img"/>
+        <span>Paneer Butter Masala - ₹390</span>
+        <button onclick="addToOrder(390)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Vegetable Biryani.jpg" alt="Vegetable Biryani" class="menu-img"/>
+        <span>Vegetable Biryani - ₹350</span>
+        <button onclick="addToOrder(350)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Grilled Vegetables.jpg" alt="Grilled Vegetables" class="menu-img"/>
+        <span>Grilled Vegetables - ₹320</span>
+        <button onclick="addToOrder(320)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Stuffed Peppers.jpg" alt="Stuffed Peppers" class="menu-img"/>
+        <span>Stuffed Peppers - ₹310</span>
+        <button onclick="addToOrder(310)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Spinach Pasta.jpg" alt="Spinach Pasta" class="menu-img"/>
+        <span>Spinach Pasta - ₹330</span>
+        <button onclick="addToOrder(330)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Veggie Pizza.jpg" alt="Veggie Pizza" class="menu-img"/>
+        <span>Veggie Pizza - ₹400</span>
+        <button onclick="addToOrder(400)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Dal Makhani.jpg" alt="Dal Makhani" class="menu-img"/>
+        <span>Dal Makhani - ₹280</span>
+        <button onclick="addToOrder(280)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Masala Dosa.jpg" alt="Masala Dosa" class="menu-img"/>
+        <span>Masala Dosa - ₹250</span>
+        <button onclick="addToOrder(250)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Palak Paneer.jpg" alt="Palak Paneer" class="menu-img"/>
+        <span>Palak Paneer - ₹360</span>
+        <button onclick="addToOrder(360)">Place Order</button>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <h2>Main Dishes - Non-Veg</h2>
+      <div class="menu-item">
+        <img src="Chicken Curry.jpg" alt="Chicken Curry" class="menu-img"/>
+        <span>Chicken Curry - ₹450</span>
+        <button onclick="addToOrder(450)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Grilled Fish.jpg" alt="Grilled Fish" class="menu-img"/>
+        <span>Grilled Fish - ₹470 <span class="discount">10% OFF</span></span>
+        <button onclick="addToOrder(470, true)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Mutton Rogan Josh.jpg" alt="Mutton Rogan Josh" class="menu-img"/>
+        <span>Mutton Rogan Josh - ₹520</span>
+        <button onclick="addToOrder(520)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Fish Curry.jpg" alt="Fish Curry" class="menu-img"/>
+        <span>Fish Curry - ₹460</span>
+        <button onclick="addToOrder(460)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Chicken Biryani.jpg" alt="Chicken Biryani" class="menu-img"/>
+        <span>Chicken Biryani - ₹430</span>
+        <button onclick="addToOrder(430)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="Prawn Curry.jpg" alt="Prawn Curry" class="menu-img"/>
+        <span>Prawn Curry - ₹480</span>
+        <button onclick="addToOrder(480)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=BBQ+Chicken" alt="BBQ Chicken" class="menu-img"/>
+        <span>BBQ Chicken - ₹460</span>
+        <button onclick="addToOrder(460)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Duck+Breast" alt="Roasted Duck Breast" class="menu-img"/>
+        <span>Roasted Duck Breast - ₹550</span>
+        <button onclick="addToOrder(550)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Shrimp+Pasta" alt="Shrimp Pasta" class="menu-img"/>
+        <span>Shrimp Pasta - ₹480</span>
+        <button onclick="addToOrder(480)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Chicken+Stew" alt="Chicken Stew" class="menu-img"/>
+        <span>Chicken Stew - ₹420</span>
+        <button onclick="addToOrder(420)">Place Order</button>
+      </div>
+    </div>
+
+    <!-- Drinks -->
+    <div class="menu-category">
+      <h2>Drinks - Non-Alcoholic</h2>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Lemonade" alt="Fresh Lemonade" class="menu-img"/>
+        <span>Fresh Lemonade - ₹120</span>
+        <button onclick="addToOrder(120)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Mango+Smoothie" alt="Mango Smoothie" class="menu-img"/>
+        <span>Mango Smoothie - ₹150</span>
+        <button onclick="addToOrder(150)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Iced+Tea" alt="Iced Tea" class="menu-img"/>
+        <span>Iced Tea - ₹110</span>
+        <button onclick="addToOrder(110)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Virgin+Mojito" alt="Virgin Mojito" class="menu-img"/>
+        <span>Virgin Mojito - ₹140</span>
+        <button onclick="addToOrder(140)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Orange+Juice" alt="Orange Juice" class="menu-img"/>
+        <span>Orange Juice - ₹130</span>
+        <button onclick="addToOrder(130)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Apple+Juice" alt="Apple Juice" class="menu-img"/>
+        <span>Apple Juice - ₹130</span>
+        <button onclick="addToOrder(130)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Coffee" alt="Coffee" class="menu-img"/>
+        <span>Coffee - ₹100</span>
+        <button onclick="addToOrder(100)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Herbal+Tea" alt="Herbal Tea" class="menu-img"/>
+        <span>Herbal Tea - ₹90</span>
+        <button onclick="addToOrder(90)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Milkshake" alt="Chocolate Milkshake" class="menu-img"/>
+        <span>Chocolate Milkshake - ₹160</span>
+        <button onclick="addToOrder(160)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Green+Smoothie" alt="Green Smoothie" class="menu-img"/>
+        <span>Green Smoothie - ₹170</span>
+        <button onclick="addToOrder(170)">Place Order</button>
+      </div>
+    </div>
+
+    <div class="menu-category">
+      <h2>Drinks - Alcoholic</h2>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Red+Wine" alt="Red Wine" class="menu-img"/>
+        <span>Red Wine - ₹350</span>
+        <button onclick="addToOrder(350)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Beer" alt="Craft Beer" class="menu-img"/>
+        <span>Craft Beer - ₹300</span>
+        <button onclick="addToOrder(300)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Margarita" alt="Margarita" class="menu-img"/>
+        <span>Margarita - ₹400</span>
+        <button onclick="addToOrder(400)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Whiskey" alt="Whiskey" class="menu-img"/>
+        <span>Whiskey - ₹450</span>
+        <button onclick="addToOrder(450)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Vodka" alt="Vodka" class="menu-img"/>
+        <span>Vodka - ₹430</span>
+        <button onclick="addToOrder(430)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Gin+Tonic" alt="Gin & Tonic" class="menu-img"/>
+        <span>Gin & Tonic - ₹410</span>
+        <button onclick="addToOrder(410)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Rum" alt="Rum" class="menu-img"/>
+        <span>Rum - ₹420</span>
+        <button onclick="addToOrder(420)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Tequila" alt="Tequila" class="menu-img"/>
+        <span>Tequila - ₹440</span>
+        <button onclick="addToOrder(440)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Champagne" alt="Champagne" class="menu-img"/>
+        <span>Champagne - ₹550</span>
+        <button onclick="addToOrder(550)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Martini" alt="Martini" class="menu-img"/>
+        <span>Martini - ₹470</span>
+        <button onclick="addToOrder(470)">Place Order</button>
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <div class="menu-category">
+      <h2>Desserts</h2>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Chocolate+Cake" alt="Chocolate Cake" class="menu-img"/>
+        <span>Chocolate Cake - ₹180</span>
+        <button onclick="addToOrder(180)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Cheesecake" alt="Cheesecake" class="menu-img"/>
+        <span>Cheesecake - ₹190</span>
+        <button onclick="addToOrder(190)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Tiramisu" alt="Tiramisu" class="menu-img"/>
+        <span>Tiramisu - ₹210</span>
+        <button onclick="addToOrder(210)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Ice+Cream" alt="Ice Cream" class="menu-img"/>
+        <span>Ice Cream (3 Scoops) - ₹160</span>
+        <button onclick="addToOrder(160)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Fruit+Tart" alt="Fruit Tart" class="menu-img"/>
+        <span>Fruit Tart - ₹170</span>
+        <button onclick="addToOrder(170)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Brownie" alt="Brownie" class="menu-img"/>
+        <span>Brownie with Nuts - ₹190</span>
+        <button onclick="addToOrder(190)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Creme+Brulee" alt="Creme Brulee" class="menu-img"/>
+        <span>Creme Brulee - ₹220</span>
+        <button onclick="addToOrder(220)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Panna+Cotta" alt="Panna Cotta" class="menu-img"/>
+        <span>Panna Cotta - ₹210</span>
+        <button onclick="addToOrder(210)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Gulab+Jamun" alt="Gulab Jamun" class="menu-img"/>
+        <span>Gulab Jamun - ₹150</span>
+        <button onclick="addToOrder(150)">Place Order</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/80?text=Rasmalai" alt="Rasmalai" class="menu-img"/>
+        <span>Rasmalai - ₹160</span>
+        <button onclick="addToOrder(160)">Place Order</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let orderTotal = 0;
+    let orderCount = 0;
+
+    function addToOrder(price, hasDiscount = false) {
+      let finalPrice = price;
+      if (hasDiscount) {
+        finalPrice = price * 0.9; // Apply 10% discount
+      }
+      orderTotal += finalPrice;
+      orderCount++;
+      alert(`Added item to order. Price: ₹${finalPrice.toFixed(2)}. Total items: ${orderCount}. Total amount: ₹${orderTotal.toFixed(2)}.`);
+    }
+  </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restaurant Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 10px;
+      background: #fefefe;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+    .menu-category {
+      margin-bottom: 30px;
+    }
+    .menu-category h2 {
+      border-bottom: 2px solid #2980b9;
+      padding-bottom: 6px;
+      color: #2980b9;
+      margin-bottom: 15px;
+    }
+    .menu-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      gap: 15px;
+    }
+    .menu-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+    .menu-item span {
+      flex-grow: 1;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #34495e;
+    }
+    .discount {
+      color: #e74c3c;
+      font-weight: 700;
+      margin-left: 8px;
+      font-size: 0.85rem;
+      background: #fdecea;
+      padding: 2px 6px;
+      border-radius: 4px;
+      vertical-align: middle;
+    }
+    button {
+      background-color: #27ae60;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2ecc71;
+    }
+  </style>
+</head>
+<body>
+  <h1>Our Special  Menu</h1>
+  <!-- Seafood -->
+  <div class="menu-category">
+    
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=Grilled+Fish" alt="" class="menu-img"/>
+      <span>Grilled Fish - ₹470 <span class="discount">10% OFF</span></span>
+      <button onclick="addToOrder(470, true)">Place Order</button>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=Mutton+Rogan" alt="" class="menu-img"/>
+      <span>Mutton Rogan Josh - ₹520</span>
+      <button onclick="addToOrder(520)">Place Order</button>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=Fish+Curry" alt="" class="menu-img"/>
+      <span>Fish Curry - ₹460</span>
+      <button onclick="addToOrder(460)">Place Order</button>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=Chicken+Biryani" alt="" class="menu-img"/>
+      <span>Chicken Biryani - ₹430</span>
+      <button onclick="addToOrder(430)">Place Order</button>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=Prawn+Curry" alt="toffu" class="menu-img"/>
+      <span>Prawn Curry - ₹480</span>
+      <button onclick="addToOrder(480)">Place Order</button>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=BBQ+Chicken" alt="sandwitch" class="menu-img"/>
+      <span>BBQ Chicken - ₹460</span>
+      <button onclick="addToOrder(460)">Place Order</button>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=Duck+Breast" alt="raagisangati" class="menu-img"/>
+      <span>Roasted Duck Breast - ₹550</span>
+      <button onclick="addToOrder(550)">Place Order</button>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=Shrimp+Pasta" alt="burger" class="menu-img"/>
+      <span>Shrimp Pasta - ₹480</span>
+      <button onclick="addToOrder(480)">Place Order</button>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/80?text=Chicken+Stew" alt="crab fry" class="menu-img"/>
+      <span>Chicken Stew - ₹420</span>
+      <button onclick="addToOrder(420)">Place Order</button>
+    </div>
+  </div>
+  <script>
+    let orderTotal = 0;
+    let orderCount = 0;
+
+    function addToOrder(price, hasDiscount = false) {
+      let finalPrice = price;
+      if (hasDiscount) {
+        finalPrice = price * 0.9; // 10% discount
+      }
+      orderTotal += finalPrice;
+      orderCount++;
+      alert(`Added to order. Price: ₹${finalPrice.toFixed(2)}. Items ordered: ${orderCount}. Total: ₹${orderTotal.toFixed(2)}.`);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Tasty Theory- Fine Dining Experience</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      margin: 0;
+      background-color: #f9f4ef;
+      color: #5a3e2b;
+    }
+    header {
+      background-color: #cfa95b;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #3b2e1a;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-family: 'Palatino Linotype', serif;
+      font-size: 2.5rem;
+      margin: 0;
+      letter-spacing: 3px;
+    }
+    nav a {
+      color: #3b2e1a;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #8c6a32;
+    }
+    .hero {
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=1350&q=100');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  padding: 0 20px;
+  image-rendering: auto;
+}
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      font-family: 'Georgia', serif;
+      letter-spacing: 5px;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin-bottom: 25px;
+      font-weight: 400;
+    }
+    .btn-primary {
+      background-color: #cfa95b;
+      border: none;
+      color: #3b2e1a;
+      padding: 15px 40px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 12px rgba(207,169,91,0.6);
+    }
+    .btn-primary:hover {
+      background-color: #b4923c;
+      box-shadow: 0 6px 15px rgba(180,146,60,0.8);
+    }
+    .featured-dishes {
+      max-width: 1200px;
+      margin: 40px auto 60px;
+      padding: 0 20px;
+    }
+    .featured-dishes h3 {
+      font-family: 'Georgia', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      color: #5a3e1f;
+    }
+    .dish-cards {
+      display: flex;
+      justify-content: space-around;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .dish-card {
+      background: #fff9f4;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(90, 62, 43, 0.15);
+      overflow: hidden;
+      width: 300px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .dish-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(90, 62, 43, 0.3);
+    }
+    .dish-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+    .dish-info {
+      padding: 20px;
+      text-align: center;
+    }
+    .dish-info h4 {
+      margin: 0 0 10px;
+      font-family: 'Georgia', serif;
+      font-size: 1.4rem;
+      color: #5a3e1f;
+    }
+    .dish-info p {
+      margin: 0 0 12px;
+      font-weight: 600;
+      color: #a47b3b;
+      font-size: 1.1rem;
+    }
+    .dish-info span {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #7a5926;
+    }
+    footer {
+      background-color: #5a3e1f;
+      color: #f9f4ef;
+      padding: 20px 40px;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+    #quantityInput {
+  width: 60px;
+  padding: 6px 8px;
+  font-size: 1rem;
+  margin-top: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #cfa95b;
+  border-radius: 6px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background-color: #fff9f4;
+      margin: 10% auto;
+      padding: 30px 40px;
+      border-radius: 12px;
+      max-width: 400px;
+      box-shadow: 0 8px 24px rgba(90, 62, 43, 0.3);
+      position: relative;
+    }
+    .close-btn {
+      color: #5a3e2b;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #bookingForm label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #5a3e2b;
+    }
+    #bookingForm input {
+      width: 100%;
+      padding: 8px 12px;
+      margin-top: 6px;
+      border: 1px solid #cfa95b;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .btn-primary-modal {
+      margin-top: 20px;
+      background-color: #cfa95b;
+      border: none;
+      color: #5a3e2b;
+      padding: 12px 25px;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    .btn-primary-modal:hover {
+      background-color: #b4923c;
+    }
+    #thankYouMessage {
+      margin-top: 20px;
+      font-weight: 600;
+      color: #5a3e2b;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .dish-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Tasty Theory</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="login.html">login</a>
+      <a href="register.html">register</a>
+       <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About Us</a>
+      <a href="reviews.html">Reviews</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome To The Tasty Theory </h2>
+    <p>Experience the finest gourmet dining in a warm and elegant atmosphere.</p>
+    <button class="btn-primary" id="bookTableBtn">Book a Table</button>
+  </section>
+
+  <section class="featured-dishes">
+    <h3>Featured Dishes</h3>
+    <div class="dish-cards">
+      <div class="dish-card">
+        <img src="Seared Salmon.jpg" alt="Seared Salmon" />
+        <div class="dish-info">
+          <h4>Seared Salmon</h4>
+          <p>Fresh Atlantic salmon with herbs and lemon</p>
+          <span>$28</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="Black Truffle Pasta.jpg" alt="Black Truffle Pasta" />
+        <div class="dish-info">
+          <h4>Black Truffle Pasta</h4>
+          <p>Creamy pasta with shaved black truffles</p>
+          <span>$35</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <img src="molten-chocolate-lava-cake.jpg" alt="Molten Chocolate Lava Cake" />
+        <div class="dish-info">
+          <h4>Molten Chocolate Lava Cake</h4>
+          <p>Decadent chocolate cake with molten center</p>
+          <span>$14</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 The Tasty Theory. All rights reserved.
+  </footer>
+
+  <!-- Book a Table Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Book a Table</h2>
+      <form id="bookingForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required />
+
+        <label for="guests">Guests:</label>
+        <input type="number" id="guests" name="guests" min="1" max="20" required />
+
+        <button type="submit" class="btn-primary-modal">Confirm Booking</button>
+      </form>
+      <div id="thankYouMessage" style="display:none;">
+        Thank you for your booking! We look forward to serving you.
+      </div>
+    </div>
+  </div>
+  <!-- Add this AFTER your existing booking modal div and BEFORE closing </body> -->
+
+<!-- Dish Detail Modal -->
+<div id="dishModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="dishModalClose">&times;</span>
+    <img id="modalImage" src="" alt="Dish Image" style="width:100%; border-radius: 10px; margin-bottom: 20px;" />
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+    <p><strong>Price: $<span id="modalPrice"></span></strong></p>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" value="1" min="1" />
+    <button id="placeOrderBtn" class="btn-primary-modal">Place Order</button>
+    <div id="orderThankYouMessage" style="display:none; margin-top: 15px; font-weight: bold; color: #5a3e2b;"></div>
+  </div>
+</div>
+
+<script>
+  // Dish modal elements
+  const dishModal = document.getElementById('dishModal');
+  const dishModalClose = document.getElementById('dishModalClose');
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDescription = document.getElementById('modalDescription');
+  const modalPrice = document.getElementById('modalPrice');
+  const quantityInput = document.getElementById('quantity');
+  const placeOrderBtn = document.getElementById('placeOrderBtn');
+  const orderThankYouMessage = document.getElementById('orderThankYouMessage');
+
+  // Select all dish cards
+  const dishCards = document.querySelectorAll('.dish-card');
+
+  dishCards.forEach(card => {
+    card.addEventListener('click', () => {
+      // Get data from the clicked card
+      const imgSrc = card.querySelector('img').src;
+      const title = card.querySelector('h4').textContent;
+      const description = card.querySelector('p').textContent;
+      const priceText = card.querySelector('span').textContent; // e.g. "$28"
+      const price = parseFloat(priceText.replace('$', ''));
+
+      // Populate modal
+      modalImage.src = imgSrc;
+      modalTitle.textContent = title;
+      modalDescription.textContent = description;
+      modalPrice.textContent = price.toFixed(2);
+      quantityInput.value = 1;
+      orderThankYouMessage.style.display = 'none';
+      placeOrderBtn.style.display = 'block';
+      quantityInput.style.display = 'inline-block';
+
+      // Show modal
+      dishModal.style.display = 'block';
+    });
+  });
+
+  // Close dish modal
+  dishModalClose.addEventListener('click', () => {
+    dishModal.style.display = 'none';
+  });
+
+  // Close modal when clicking outside modal-content
+  window.addEventListener('click', (event) => {
+    if (event.target === dishModal) {
+      dishModal.style.display = 'none';
+    }
+  });
+
+  // Handle place order button
+  placeOrderBtn.addEventListener('click', () => {
+    const quantity = parseInt(quantityInput.value);
+    if (quantity < 1 || isNaN(quantity)) {
+      alert('Please enter a valid quantity (1 or more).');
+      return;
+    }
+    const price = parseFloat(modalPrice.textContent);
+    const total = price * quantity;
+
+    placeOrderBtn.style.display = 'none';
+    quantityInput.style.display = 'none';
+    orderThankYouMessage.style.display = 'block';
+    orderThankYouMessage.textContent = `Thank you for your order! Total price: $${total.toFixed(2)}. Your order has been placed.`;
+  });
+</script>
+
+
+  <script>
+    // Modal functionality
+    const modal = document.getElementById('bookingModal');
+    const btn = document.getElementById('bookTableBtn');
+    const span = document.querySelector('.close-btn');
+    const form = document.getElementById('bookingForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+
+    // Open modal on button click
+    btn.addEventListener('click', () => {
+      modal.style.display = 'block';
+      thankYouMessage.style.display = 'none';
+      form.style.display = 'block';
+      form.reset();
+    });
+
+    // Close modal when X clicked
+    span.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside modal-content
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Backend integration for saving booking can go here later
+
+      form.style.display = 'none';
+      thankYouMessage.style.display = 'block';
+    });
+    
+  </script>
+</body>
+</html>

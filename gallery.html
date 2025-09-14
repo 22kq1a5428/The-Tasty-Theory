@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | The Tasty Theory</title>
+  <link rel="stylesheet" href="gallery.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: url('images/gallery-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #2e2e2e;
+    }
+
+    .gallery-section {
+      max-width: 1400px;
+      margin: auto;
+      padding: 60px 20px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+    }
+
+    .gallery-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #3b2c2a;
+      margin-bottom: 10px;
+    }
+
+    .gallery-title span {
+      color: #a86b2e;
+    }
+
+    .gallery-subtitle {
+      font-size: 1.2rem;
+      color: #5f5f5f;
+      margin-bottom: 40px;
+    }
+
+    .filter-buttons {
+      margin-bottom: 30px;
+    }
+
+    .filter-buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      background-color: #a86b2e;
+      color: white;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .filter-buttons button:hover {
+      background-color: #875426;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 0 10px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      position: relative;
+      background: #fff;
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+    }
+
+    .caption {
+      padding: 10px;
+      font-weight: 500;
+      font-size: 1rem;
+      background-color: #fdf8f4;
+      color: #3b2c2a;
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 3rem;
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <section class="gallery-section">
+    <h1 class="gallery-title">Elegant Moments at <span>The Tasty Theory</span></h1>
+    <p class="gallery-subtitle">A visual taste of our culinary passion and warm ambiance</p>
+
+    <div class="filter-buttons">
+      <button onclick="filterGallery('all')">All</button>
+      <button onclick="filterGallery('dishes')">Dishes</button>
+      <button onclick="filterGallery('ambiance')">Ambiance</button>
+      <button onclick="filterGallery('behind')">Behind the Scenes</button>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item" data-category="dishes">
+        <img src="elegant1.jpg" alt="Fine Dining" />
+        <div class="caption">Fine Dining Experience</div>
+      </div>
+      <div class="gallery-item" data-category="dishes">
+        <img src="elegant2.jpg" alt="Chef's Special" />
+        <div class="caption">Chef's Special Delight</div>
+      </div>
+      <div class="gallery-item" data-category="ambiance">
+        <img src="elegant3.jpg" alt="Cozy Interiors" />
+        <div class="caption">Cozy Interiors</div>
+      </div>
+      <div class="gallery-item" data-category="ambiance">
+        <img src="elegant4.jpg" alt="Candlelight Dinner" />
+        <div class="caption">Candlelight Dinner</div>
+      </div>
+      <div class="gallery-item" data-category="dishes">
+        <img src="elegant5.jpg" alt="Dessert Showcase" />
+        <div class="caption">Dessert Showcase</div>
+      </div>
+      <div class="gallery-item" data-category="ambiance">
+        <img src="elegant6.jpg" alt="Table Setup" />
+        <div class="caption">Elegant Table Setup</div>
+      </div>
+      <div class="gallery-item" data-category="behind">
+        <video src="Kitchen Prep.mp4" autoplay muted loop></video>
+        <div class="caption">Kitchen Prep</div>
+      </div>
+      <div class="gallery-item" data-category="behind">
+        <video src="teamwork.mp4" autoplay muted loop></video>
+        <div class="caption">Teamwork in Action</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="">
+    <span id="lightbox-close">&times;</span>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.getElementById("lightbox-close");
+
+    document.querySelectorAll(".gallery-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+
+    function filterGallery(category) {
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
